@@ -167,6 +167,7 @@
 							</g>
 						</g>
 			</svg>
+			<!--
 			<div class="right">
 					<h1>Graph of <br> flu trends <br> in Canada</h1>
 					<p>Data source: Google Flu Trends <a href="http://www.google.org/flutrends" style="color:white">(http://www.google.org/flutrends)</a>.</p>
@@ -174,12 +175,27 @@
 					<div class="status" id="statusID">
 					</div>
 			</div>
+			-->
 		</div>
-		<div class="graphBox">
-  			<svg class="graph">
-				
-  			</svg>
-  	</div>
+		<!--<script src="https://d3js.org/d3.v4.js"></script>-->
+		<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+		<!-- <select id="DOBDay" name="DOBDay">
+			<option>- Year -</option>
+			<option value="1999">1999</option>
+			<option value="2000">2000</option>
+			<option value="2001">2001</option>
+			<option value="2002">2002</option>
+			<option value="2003">2003</option>
+			<option value="2004">2004</option>
+			<option value="2005">2005</option>
+			<option value="2006">2006</option>
+			<option value="2007">2007</option>
+			</select>
+			<input onclick="updatePieChart(getTotalCauseValues(this.form.DOBDay))" type="button"/> -->
+		<button onclick="updatePieChart(getTotalCauseValues(2000))">2000</button>
+		<button onclick="updatePieChart(getTotalCauseValues(2013))">2013</button>
+		<div id="my_dataviz"></div>
+		
     <!-- <div class="block">
         <svg class="map" style="fill:#d3d3d3">
 		<g id="AB" transform="translate(-385,0) scale(0.4 0.4)">

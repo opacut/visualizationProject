@@ -16,7 +16,84 @@ d3.csv("https://data.cdc.gov/api/views/bi63-dtpu/rows.csv?accessType=DOWNLOAD", 
   visualization();
 });
 
+var pieWidth = 450
+      pieHeight = 450
+      pieMargin = 40
 
+// The radius of the pieplot is half the width or half the height (smallest one). I substract a bit of margin.
+var pieRadius = Math.min(pieWidth, pieHeight) / 2 - pieMargin
+
+// append the svg object to the div called 'my_dataviz'
+var pieSvg = d3.select("#my_dataviz")
+  .append("svg")
+    .attr("width", pieWidth)
+    .attr("height", pieHeight)
+  .append("g")
+    .attr("transform", "translate(" + pieWidth / 2 + "," + pieHeight / 2 + ")");
+
+// create 2 data_set
+var data1 = {a: 9, b: 20, c:30, d:8, e:12}
+var data2 = {a: 6, b: 16, c:20, d:14, e:19, f:12}
+
+// set the color scale
+var pieColor = d3.scaleOrdinal()
+  .domain(["a", "b", "c", "d", "e", "f"])
+  .range(d3.schemeDark2);
+
+
+// Initialize the plot with the first dataset
+console.log("total cause values")
+//console.log(getTotalCauseValues(2000));
+console.log("are stated")
+//updatePieChart(getTotalCauseValues(2000));
+
+
+// A function that create / update the plot for a given variable:
+function updatePieChart(data) {
+  console.log(data)
+  // Compute the position of each group on the pie:
+  var pie = d3.pie()
+    .value(function(d) {return d.value; })
+    .sort(function(a, b) { console.log(a) ; return d3.ascending(a.key, b.key);} ) // This make sure that group order remains the same in the pie chart
+  var data_ready = pie(d3.entries(data))
+
+  // map to data
+  var u = pieSvg.selectAll("path")
+    .data(data_ready)
+
+  // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+  u
+    .enter()
+    .append('path')
+    .merge(u)
+    .transition()
+    .duration(1000)
+    .attr('d', d3.arc()
+      .innerRadius(0)
+      .outerRadius(pieRadius)
+    )
+    .attr('fill', function(d){ return(pieColor(d.data.key)) })
+    .attr("stroke", "white")
+    .style("stroke-width", "2px")
+    .style("opacity", 1)
+
+    u
+      .attr('title', function(d){d.data.key})
+  /* u
+    .enter()
+    .append('text')
+    .text(function(d){ return d.data.key})
+    .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")"; })
+    .style("text-anchor", "middle")
+    .style("font-size", 17) */
+
+  // remove the group that is not present anymore
+  u
+    .exit()
+    .remove()
+
+   
+}
 
 function visualization() {
   console.log("starting visualization");
@@ -34,7 +111,13 @@ function visualization() {
 
   console.log("canvas set to");
   console.log(canvas);
-  canvas.selectAll("g").on("click", function(){
+  canvas.selectAll("path").on("click", function(){
+    console.log("adding listener.")
+    borderIt(this);
+    chosenState = d3.select(this).attr('id');
+    console.log(chosenState);
+  });
+  canvas.selectAll("circle").on("click", function(){
     console.log("adding listener.")
     borderIt(this);
     chosenState = d3.select(this).attr('id');
@@ -223,4 +306,47 @@ function visualization() {
   // /*----------------------
   // END OF VISUALIZATION
   // ----------------------*/
+  var values2000 = getCauseValuesByYear(2000);
+  var values2013 = getCauseValuesByYear(2013);
+  values2000.forEach(function(a){
+    if(a.causeName != "All Causes"){
+      console.log(a.year);
+    }
+  });
+  values2013.forEach(function(a){
+    if(a.causeName != "All Causes"){
+      console.log(a.year);
+    }
+  });
+  //console.log(getTotalCauseValues(2000));
+  //pieChart()
+  updatePieChart(getTotalCauseValues(2000));
 };
+
+function getTotalCauseValues(yr){
+  var filteredByYear = getCauseValuesByYear(yr);
+  var causes = data.causeName;
+  var ret = [];// = new Map();
+  filteredByYear.forEach(function(d){
+    //console.log(d);
+    if(d.causeName != "All causes"){
+      if(ret[d.causeName]){
+        ret[d.causeName] += d.deaths;
+      }
+      else{
+        ret[d.causeName] = d.deaths;
+      }
+    }
+  });
+  return ret;
+}
+
+function getCauseValuesByYear(yr){
+  var ret = [];
+  data.forEach(function(d){
+    if(d.year == yr){
+      ret.push(d);
+    }
+  });
+  return ret;
+}
