@@ -55,6 +55,9 @@ console.log("total cause values")
 console.log("are stated")
 //updatePieChart(getTotalCauseValues(2000));
 
+function displayStateInfo(st, yr){
+  console.log("Chosen state: "+st+", chosen year: "+yr);
+}
 
 function showToolTipPieChart(d){
   d3.select(this)
@@ -142,6 +145,7 @@ function visualization() {
   canvas.selectAll("path").on("click", function(){
     console.log("adding listener.")
     borderIt(this);
+    displayStateInfo(chosenState, getCurrentYear());
     chosenState = d3.select(this).attr('id');
     console.log(chosenState);
   });
@@ -171,6 +175,7 @@ function getTotalCauseValues(yr){
       }
     }
   });
+  
   return ret;
 }
 
@@ -181,5 +186,6 @@ function getCauseValuesByYear(yr){
       ret.push(d);
     }
   });
+  var chosenYear = d3.select("#chosenYear").html("<h3>Chosen Year: "+yr+"</h3>");
   return ret;
 }

@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>Graph of flu trends in Canada</title>
-		<script type="text/javascript" src="d3/d3.js"></script>
+		<script type="text/javascript" src="d3/d3.js"></script> 
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
     <link href="css/main.css" rel="stylesheet">
   </head>
   <body>
@@ -178,7 +179,7 @@
 			-->
 		</div>
 		<!--<script src="https://d3js.org/d3.v4.js"></script>-->
-		<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+		<!--<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>-->
 		<!-- <select id="DOBDay" name="DOBDay">
 			<option>- Year -</option>
 			<option value="1999">1999</option>
@@ -192,6 +193,7 @@
 			<option value="2007">2007</option>
 			</select>
 			<input onclick="updatePieChart(getTotalCauseValues(this.form.DOBDay))" type="button"/> -->
+		<div id="chosenYear">Chosen year: </div>
 		<button onclick="updatePieChart(getTotalCauseValues(1999))">1999</button>
 		<button onclick="updatePieChart(getTotalCauseValues(2000))">2000</button>
 		<button onclick="updatePieChart(getTotalCauseValues(2001))">2001</button>
@@ -265,6 +267,9 @@
 					</li>
 				</ul>
 			</div>
+		</div>
+		<div id="stateInfo">
+
 		</div>
   </body>
   <script type="text/javascript" src="myJScode.js"></script>
