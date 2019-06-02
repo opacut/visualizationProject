@@ -1,4 +1,5 @@
 var data;
+var currentState = null;
 const distinct = (value, index, self) => {
   return self.indexOf(value) === index;
 }
@@ -41,7 +42,84 @@ var data2 = {a: 6, b: 16, c:20, d:14, e:19, f:12}
 
 var colors = ["#800000", "#808000", "#000075", "#ffe119", "#f58231", "#f032e6", "#bfef45", "#42d4f4", "#e6194B", "#3cb44b"];
 
+var causeToColorMap = new Map();
+causeToColorMap.set("Kidney disease", "#800000");
+causeToColorMap.set("Alzheimer's disease", "#808000");
+causeToColorMap.set("Diabetes", "#000075");
+causeToColorMap.set("Influenza and pneumonia", "#ffe119");
+causeToColorMap.set("Unintentional injuries", "#f58231");
+causeToColorMap.set("CLRD", "#f032e6");
+causeToColorMap.set("Stroke", "#bfef45");
+causeToColorMap.set("Cancer", "#42d4f4");
+causeToColorMap.set("Heart disease", "#e6194B");
+causeToColorMap.set("Suicide", "#3cb44b");
 
+var colorToCauseMap = new Map();
+colorToCauseMap.set("#800000", "Kidney disease");
+colorToCauseMap.set("#808000", "Alzheimer's disease");
+colorToCauseMap.set("#000075", "Diabetes");
+colorToCauseMap.set("#ffe119", "Influenza and pneumonia");
+colorToCauseMap.set("#f58231", "Unintentional injuries");
+colorToCauseMap.set("#f032e6", "CLRD");
+colorToCauseMap.set("#bfef45", "Stroke");
+colorToCauseMap.set("#42d4f4", "Cancer");
+colorToCauseMap.set("#e6194B", "Heart disease");
+colorToCauseMap.set("#3cb44b", "Suicide");
+
+var stateCodeMap = new Map();
+stateCodeMap.set("AK", "Alaska");
+stateCodeMap.set("HI", "Hawaii");
+stateCodeMap.set("AL", "Alabama");
+stateCodeMap.set("AR", "Arkansas");
+stateCodeMap.set("AZ", "Arizona");
+stateCodeMap.set("CA", "California");
+stateCodeMap.set("CO", "Colorado");
+stateCodeMap.set("CT", "Connecticut");
+stateCodeMap.set("DE", "Delaware");
+stateCodeMap.set("FL", "Florida");
+stateCodeMap.set("GA", "Georgia");
+stateCodeMap.set("IA", "Iowa");
+stateCodeMap.set("ID", "Idaho");
+stateCodeMap.set("IL", "Illinois");
+stateCodeMap.set("IN", "Indiana");
+stateCodeMap.set("KS", "Kansas");
+stateCodeMap.set("KY", "Kentucky");
+stateCodeMap.set("LA", "Louisiana");
+stateCodeMap.set("MA", "Massachusetts");
+stateCodeMap.set("MD", "Maryland");
+stateCodeMap.set("ME", "Maine");
+stateCodeMap.set("MI", "Michigan");
+stateCodeMap.set("MN", "Minnesota");
+stateCodeMap.set("MO", "Missouri");
+stateCodeMap.set("MS", "Mississippi");
+stateCodeMap.set("MT", "Montana");
+stateCodeMap.set("NC", "North Carolina");
+stateCodeMap.set("ND", "North Dakota");
+stateCodeMap.set("NE", "Nebraska");
+stateCodeMap.set("NH", "New Hampshire");
+stateCodeMap.set("NJ", "New Jersey");
+stateCodeMap.set("NM", "New Mexico");
+stateCodeMap.set("NV", "Nevada");
+stateCodeMap.set("NY", "New York");
+stateCodeMap.set("OH", "Ohio");
+stateCodeMap.set("OK", "Oklahoma");
+stateCodeMap.set("OR", "Oregon");
+stateCodeMap.set("PA", "Pennsylvania");
+stateCodeMap.set("RI", "Rhode Island");
+stateCodeMap.set("SC", "South Carolina");
+stateCodeMap.set("SD", "South Dakota");
+stateCodeMap.set("TN", "Tennessee");
+stateCodeMap.set("TX", "Texas");
+stateCodeMap.set("UT", "Utah");
+stateCodeMap.set("VA", "Virginia");
+stateCodeMap.set("VT", "Vermont");
+stateCodeMap.set("WA", "Washington");
+stateCodeMap.set("WI", "Wisconsin");
+stateCodeMap.set("WV", "West Virginia");
+stateCodeMap.set("WY", "Wyoming");
+stateCodeMap.set("DC", "District of Columbia");
+stateCodeMap.set("DC1", "District of Columbia");
+stateCodeMap.set("DC2", "District of Columbia");
 
 // set the color scale
 var pieColor = d3.scaleOrdinal()
@@ -50,13 +128,27 @@ var pieColor = d3.scaleOrdinal()
   .range(colors);
 
 // Initialize the plot with the first dataset
-console.log("total cause values")
+//console.log("total cause values")
 //console.log(getTotalCauseValues(2000));
-console.log("are stated")
+//console.log("are stated")
 //updatePieChart(getTotalCauseValues(2000));
 
 function displayStateInfo(st, yr){
+  if (st == null){
+    return;
+  }
   console.log("Chosen state: "+st+", chosen year: "+yr);
+  var allCausesForState = [];
+  data.forEach(function(d){
+    if((d.year == yr)&&(d.state == stateCodeMap.get(st))){
+      allCausesForState.push(d);
+    }
+  });
+  var acs = allCausesForState.sort((a,b) => (a.deaths > b.deaths) ? -1 : 1);
+  var resultHtml = "<h3>Chosen state: "+stateCodeMap.get(st)+"</h3><h4>Total deaths: "+acs[0].deaths+"</h4><ul><li>"+acs[1].causeName+": "+acs[1].deaths+"</li><li>"+acs[2].causeName+": "+acs[2].deaths+"</li><li>"+acs[3].causeName+": "+acs[3].deaths+"</li><li>"+acs[4].causeName+": "+acs[4].deaths+"</li><li>"+acs[5].causeName+": "+acs[5].deaths+"</li><li>"+acs[6].causeName+": "+acs[6].deaths+"</li><li>"+acs[7].causeName+": "+acs[7].deaths+"</li><li>"+acs[8].causeName+": "+acs[8].deaths+"</li><li>"+acs[9].causeName+": "+acs[9].deaths+"</li><li>"+acs[10].causeName+": "+acs[10].deaths+"</li></ul>"
+  //var yr = d3.select("#chosenYear").html();
+  console.log("HTML: "+d3.select("#stateInfo").html(resultHtml));
+  console.log(allCausesForState);
 }
 
 function showToolTipPieChart(d){
@@ -67,7 +159,7 @@ function showToolTipPieChart(d){
 }
 
 function chooseCauseToVisualize(cs){
-  console.log("Cause chosen: "+cs);
+  //console.log("Cause chosen: "+cs);
 }
 
 // A function that create / update the plot for a given variable:
@@ -106,12 +198,53 @@ function updatePieChart(data) {
     .exit()
     .remove()
 
-   
+    displayStateInfo(currentState, getCurrentYear());
+}
+
+function colorStates(yr){
+  var stateColorMap = new Map();
+  //find all the values for all states for this year
+  var dataWithCorrectYear = [];
+  var stateWithCause = new Map();
+  var stateCodeMapInverted = new Map();
+  for (var [k,v] of stateCodeMap){
+    stateCodeMapInverted.set(v,k);
+  }
+  for (var [k, v] of stateCodeMap){
+    var deaths = 0;
+    var cause = "none";
+    data.forEach(function(d){
+      if((d.year == yr)&&(d.state==v)&&(d.deaths >= deaths)&&(d.causeName != "All causes")){
+        //console.log("Cause: "+d.causeName+", deaths: "+d.deaths+", which is more than "+deaths);
+        deaths = d.deaths;
+        cause = d.causeName;
+      }
+    })
+    stateColorMap.set(v, cause);
+  }
+  console.log(stateColorMap);
+  console.log(stateCodeMapInverted);
+  var canvas = d3.select(".map");
+  for (var [k, v] of stateColorMap){
+    //console.log("Processing "+k+", "+v+": "+stateCodeMapInverted.get(k)+", "+causeToColorMap.get(v));
+    d3.select("#"+stateCodeMapInverted.get(k)).style("fill",causeToColorMap.get(v));
+  }
+  //canvas.selectAll("path").attr("style", "fill:"+"red"+";");
+  //console.log("data with correct year: "+dataWithCorrectYear);
+}
+
+function getDistinctStates(){
+  var ret = [];
+
+}
+
+function getStateColor(state, year){
+
 }
 
 function constructLegend() {
   var legend = d3.select("mapLegend");
-  console.log("legend: "+legend);
+  //console.log("legend: "+legend);
   var causes = [];
   data.forEach(function(d){
     if(d.causeName != "All causes"){  
@@ -122,12 +255,12 @@ function constructLegend() {
   causes.forEach(function(d){
     legend.append("p").attr("id", d)
   });
-  console.log("distinct causes:" + causes);
+  //console.log("distinct causes:" + causes);
 }
 
 
 function visualization() {
-  console.log("starting visualization");
+  //console.log("starting visualization");
   var dataEntriesCount = data.length;
   var chosenState = null;
 
@@ -136,6 +269,7 @@ function visualization() {
   function borderIt(obj){
     if(chosenState != null){
       d3.select("#"+chosenState).style("stroke-width",0);
+      //console.log("What state does it show in the original borderit function? "+chosenState);
     }
     d3.select(obj).style("stroke","yellow").style("stroke-width",4);
   }
@@ -143,17 +277,21 @@ function visualization() {
   console.log("canvas set to");
   console.log(canvas);
   canvas.selectAll("path").on("click", function(){
-    console.log("adding listener.")
+    //console.log("adding listener.")
     borderIt(this);
-    displayStateInfo(chosenState, getCurrentYear());
+    //getCurrentYear()
     chosenState = d3.select(this).attr('id');
-    console.log(chosenState);
+    currentState = chosenState;
+    displayStateInfo(chosenState, getCurrentYear());
+    //console.log(chosenState);
   });
   canvas.selectAll("circle").on("click", function(){
-    console.log("adding listener.")
+    //console.log("adding listener.")
     borderIt(this);
     chosenState = d3.select(this).attr('id');
-    console.log(chosenState);
+    currentState = chosenState;
+    displayStateInfo(chosenState, getCurrentYear());
+    //console.log(chosenState);
   });
   //console.log(getTotalCauseValues(2000));
   //pieChart()
@@ -176,7 +314,16 @@ function getTotalCauseValues(yr){
     }
   });
   
+  colorStates(yr);
   return ret;
+}
+
+function getCurrentYear(){
+  var yr = d3.select("#chosenYear").html();
+  console.log("The current year is "+yr);
+  var re = new RegExp('<h3>Chosen Year: (.*)</h3>');
+  var year = re.exec(yr);
+  return year[1];
 }
 
 function getCauseValuesByYear(yr){

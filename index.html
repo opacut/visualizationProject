@@ -2,14 +2,19 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Graph of flu trends in Canada</title>
+    <title>Graph of causes of death in the US</title>
 		<script type="text/javascript" src="d3/d3.js"></script> 
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
     <link href="css/main.css" rel="stylesheet">
   </head>
   <body>
-		<div class="block">
-			<svg class="map" style="fill:#d3d3d3">
+	  <h1>Graph of causes of death in the US over the years 1999-2016</h1>
+	  <p>This visualization graphs the most common causes of death by state and year in the United States. The dataset is taken from the Center for Disease control (<a href="https://data.cdc.gov/api/views/bi63-dtpu/rows.csv?accessType=DOWNLOAD">link</a>.
+		The states' color indicates the most prevalent cause of death. Note that the only two colors present are those corresponding to Heart Disease and Cancer. This can indicate an ongoing nation-wide epidemic, and the CDC is well aware of this.</p>
+	  <div class="container block">
+		<div class="row">
+			<div class="col">
+				<svg class="map" style="fill:#d3d3d3">
 					<g class="state">
 							<path id="AK" d="M161.1 453.7l-.3 85.4 1.6 1 3.1.2 1.5-1.1h2.6l.2 2.9 7 6.8.5 2.6 3.4-1.9.6-.2.3-3.1 1.5-1.6 1.1-.2 1.9-1.5 3.1 2.1.6 2.9 1.9 1.1 1.1 2.4 3.9 1.8 3.4 6 2.7 3.9 2.3 2.7 1.5 3.7 5 1.8 5.2 2.1 1 4.4.5 3.1-1 3.4-1.8 2.3-1.6-.8-1.5-3.1-2.7-1.5-1.8-1.1-.8.8 1.5 2.7.2 3.7-1.1.5-1.9-1.9-2.1-1.3.5 1.6 1.3 1.8-.8.8s-.8-.3-1.3-1c-.5-.6-2.1-3.4-2.1-3.4l-1-2.3s-.3 1.3-1 1c-.6-.3-1.3-1.5-1.3-1.5l1.8-1.9-1.5-1.5v-5h-.8l-.8 3.4-1.1.5-1-3.7-.6-3.7-.8-.5.3 5.7v1.1l-1.5-1.3-3.6-6-2.1-.5-.6-3.7-1.6-2.9-1.6-1.1v-2.3l2.1-1.3-.5-.3-2.6.6-3.4-2.4-2.6-2.9-4.8-2.6-4-2.6 1.3-3.2V542l-1.8 1.6-2.9 1.1-3.7-1.1-5.7-2.4h-5.5l-.6.5-6.5-3.9-2.1-.3-2.7-5.8-3.6.3-3.6 1.5.5 4.5 1.1-2.9 1 .3-1.5 4.4 3.2-2.7.6 1.6-3.9 4.4-1.3-.3-.5-1.9-1.3-.8-1.3 1.1-2.7-1.8-3.1 2.1-1.8 2.1-3.4 2.1-4.7-.2-.5-2.1 3.7-.6v-1.3l-2.3-.6 1-2.4 2.3-3.9v-1.8l.2-.8 4.4-2.3 1 1.3h2.7l-1.3-2.6-3.7-.3-5 2.7-2.4 3.4-1.8 2.6-1.1 2.3-4.2 1.5-3.1 2.6-.3 1.6 2.3 1 .8 2.1-2.7 3.2-6.5 4.2-7.8 4.2-2.1 1.1-5.3 1.1-5.3 2.3 1.8 1.3-1.5 1.5-.5 1.1-2.7-1-3.2.2-.8 2.3h-1l.3-2.4-3.6 1.3-2.9 1-3.4-1.3-2.9 1.9h-3.2l-2.1 1.3-1.6.8-2.1-.3-2.6-1.1-2.3.6-1 1-1.6-1.1v-1.9l3.1-1.3 6.3.6 4.4-1.6 2.1-2.1 2.9-.6 1.8-.8 2.7.2 1.6 1.3 1-.3 2.3-2.7 3.1-1 3.4-.6 1.3-.3.6.5h.8l1.3-3.7 4-1.5 1.9-3.7 2.3-4.5 1.6-1.5.3-2.6-1.6 1.3-3.4.6-.6-2.4-1.3-.3-1 1-.2 2.9-1.5-.2-1.5-5.8-1.3 1.3-1.1-.5-.3-1.9-4 .2-2.1 1.1-2.6-.3 1.5-1.5.5-2.6-.6-1.9 1.5-1 1.3-.2-.6-1.8v-4.4l-1-1-.8 1.5h-6.1l-1.5-1.3-.6-3.9-2.1-3.6v-1l2.1-.8.2-2.1 1.1-1.1-.8-.5-1.3.5-1.1-2.7 1-5 4.5-3.2 2.6-1.6 1.9-3.7 2.7-1.3 2.6 1.1.3 2.4 2.4-.3 3.2-2.4 1.6.6 1 .6h1.6l2.3-1.3.8-4.4s.3-2.9 1-3.4c.6-.5 1-1 1-1l-1.1-1.9-2.6.8-3.2.8-1.9-.5-3.6-1.8-5-.2-3.6-3.7.5-3.9.6-2.4-2.1-1.8-1.9-3.7.5-.8 6.8-.5h2.1l1 1h.6l-.2-1.6 3.9-.6 2.6.3 1.5 1.1-1.5 2.1-.5 1.5 2.7 1.6 5 1.8 1.8-1-2.3-4.4-1-3.2 1-.8-3.4-1.9-.5-1.1.5-1.6-.8-3.9-2.9-4.7-2.4-4.2 2.9-1.9h3.2l1.8.6 4.2-.2 3.7-3.6 1.1-3.1 3.7-2.4 1.6 1 2.7-.6 3.7-2.1 1.1-.2 1 .8 4.5-.2 2.7-3.1h1.1l3.6 2.4 1.9 2.1-.5 1.1.6 1.1 1.6-1.6 3.9.3.3 3.7 1.9 1.5 7.1.6 6.3 4.2 1.5-1 5.2 2.6 2.1-.6 1.9-.8 4.8 1.9zM46 482.6l2.1 5.3-.2 1-2.9-.3-1.8-4-1.8-1.5H39l-.2-2.6 1.8-2.4 1.1 2.4 1.5 1.5zm-2.6 33.5l3.7.8 3.7 1 .8 1-1.6 3.7-3.1-.2-3.4-3.6zM22.7 502l1.1 2.6 1.1 1.6-1.1.8-2.1-3.1V502zM9 575.1l3.4-2.3 3.4-1 2.6.3.5 1.6 1.9.5 1.9-1.9-.3-1.6 2.7-.6 2.9 2.6-1.1 1.8-4.4 1.1-2.7-.5-3.7-1.1-4.4 1.5-1.6.3zm48.9-4.5l1.6 1.9 2.1-1.6-1.5-1.3zm2.9 3l1.1-2.3 2.1.3-.8 1.9h-2.4zm23.6-1.9l1.5 1.8 1-1.1-.8-1.9zm8.8-12.5l1.1 5.8 2.9.8 5-2.9 4.4-2.6-1.6-2.4.5-2.4-2.1 1.3-2.9-.8 1.6-1.1 1.9.8 3.9-1.8.5-1.5-2.4-.8.8-1.9-2.7 1.9-4.7 3.6-4.8 2.9zm42.3-19.8l2.4-1.5-1-1.8-1.8 1z">
 								<title>Alaska</title>
@@ -167,109 +172,99 @@
 								<circle id="DC2" stroke="#FFFFFF" stroke-width="1.5" cx="801.3" cy="251.8" r="5" opacity="1"/> <!-- Set opacity to "0" to hide DC circle -->
 							</g>
 						</g>
-			</svg>
-			<!--
-			<div class="right">
-					<h1>Graph of <br> flu trends <br> in Canada</h1>
-					<p>Data source: Google Flu Trends <a href="http://www.google.org/flutrends" style="color:white">(http://www.google.org/flutrends)</a>.</p>
-					<p>Start by clicking on the province.</p>
-					<div class="status" id="statusID">
+				</svg>
+			</div>
+			<div class="col col-sm">
+				<div class="row">
+				
+				<div class="col-lg-6 col" id="mapLegend">
+						<ul>
+							<li>
+								<svg width="15" height="15">
+									<rect width="15" height="15" style="fill:#e6194B;stroke-width:3;stroke:rgb(0,0,0)" />
+								</svg>  Heart disease
+							</li>
+							<li>
+								<svg width="15" height="15">
+								<rect width="15" height="15" style="fill:#ffe119;stroke-width:3;stroke:rgb(0,0,0)" />
+								</svg>  Influenza and pneumonia
+							</li>
+							<li>
+								<svg width="15" height="15">
+									<rect width="15" height="15" style="fill:#800000;stroke-width:3;stroke:rgb(0,0,0)" />
+								</svg>  Kidney disease
+							</li>
+							<li>
+								<svg width="15" height="15">
+									<rect width="15" height="15" style="fill:#bfef45;stroke-width:3;stroke:rgb(0,0,0)" />
+								</svg>  Stroke
+							</li>
+							<li>
+								<svg width="15" height="15">
+									<rect width="15" height="15" style="fill:#3cb44b;stroke-width:3;stroke:rgb(0,0,0)" />
+								</svg>  Suicide
+							</li>
+							<li>
+								<svg width="15" height="15">
+									<rect width="15" height="15" style="fill:#f58231;stroke-width:3;stroke:rgb(0,0,0)" />
+								</svg>  Unintentional injuries
+							</li>
+							<li>
+								<svg width="15" height="15">
+									<rect width="15" height="15" style="fill:#808000;stroke-width:3;stroke:rgb(0,0,0)" />
+								</svg>  Alzheimer's disease
+							</li>
+							<li>
+								<svg width="15" height="15">
+									<rect width="15" height="15" style="fill:#f032e6;stroke-width:3;stroke:rgb(0,0,0)" />
+								</svg>  Respiratory Diseases
+							</li>
+							<li>
+								<svg width="15" height="15">
+									<rect width="15" height="15" style="fill:#42d4f4;stroke-width:3;stroke:rgb(0,0,0)" />
+								</svg>  Cancer
+							</li>
+							<li>
+								<svg width="15" height="15">
+									<rect width="15" height="15" style="fill:#000075;stroke-width:3;stroke:rgb(0,0,0)" />
+								</svg>  Diabetes
+							</li>
+						</ul>
 					</div>
-			</div>
-			-->
+					<div class="col-lg-6 col" id="my_dataviz"></div>
+				</div>
+				
+				<div id="stateInfo"></div>
+				<div id="chosenYear"></div>
+				<div class="col col-lg">
+						<button onclick="updatePieChart(getTotalCauseValues(1999))">1999</button>
+						<button onclick="updatePieChart(getTotalCauseValues(2000))">2000</button>
+						<button onclick="updatePieChart(getTotalCauseValues(2001))">2001</button>
+						<button onclick="updatePieChart(getTotalCauseValues(2002))">2002</button>
+						<button onclick="updatePieChart(getTotalCauseValues(2003))">2003</button>
+						<button onclick="updatePieChart(getTotalCauseValues(2004))">2004</button>
+						<button onclick="updatePieChart(getTotalCauseValues(2005))">2005</button>
+						<button onclick="updatePieChart(getTotalCauseValues(2006))">2006</button>
+						<button onclick="updatePieChart(getTotalCauseValues(2007))">2007</button>
+						<button onclick="updatePieChart(getTotalCauseValues(2008))">2008</button>
+						<button onclick="updatePieChart(getTotalCauseValues(2009))">2009</button>
+						<button onclick="updatePieChart(getTotalCauseValues(2010))">2010</button>
+						<button onclick="updatePieChart(getTotalCauseValues(2011))">2011</button>
+						<button onclick="updatePieChart(getTotalCauseValues(2012))">2012</button>
+						<button onclick="updatePieChart(getTotalCauseValues(2013))">2013</button>
+						<button onclick="updatePieChart(getTotalCauseValues(2014))">2014</button>
+						<button onclick="updatePieChart(getTotalCauseValues(2015))">2015</button>
+						<button onclick="updatePieChart(getTotalCauseValues(2016))">2016</button>
+				</div>
+			</div>	
 		</div>
-		<!--<script src="https://d3js.org/d3.v4.js"></script>-->
-		<!--<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>-->
-		<!-- <select id="DOBDay" name="DOBDay">
-			<option>- Year -</option>
-			<option value="1999">1999</option>
-			<option value="2000">2000</option>
-			<option value="2001">2001</option>
-			<option value="2002">2002</option>
-			<option value="2003">2003</option>
-			<option value="2004">2004</option>
-			<option value="2005">2005</option>
-			<option value="2006">2006</option>
-			<option value="2007">2007</option>
-			</select>
-			<input onclick="updatePieChart(getTotalCauseValues(this.form.DOBDay))" type="button"/> -->
-		<div id="chosenYear">Chosen year: </div>
-		<button onclick="updatePieChart(getTotalCauseValues(1999))">1999</button>
-		<button onclick="updatePieChart(getTotalCauseValues(2000))">2000</button>
-		<button onclick="updatePieChart(getTotalCauseValues(2001))">2001</button>
-		<button onclick="updatePieChart(getTotalCauseValues(2002))">2002</button>
-		<button onclick="updatePieChart(getTotalCauseValues(2003))">2003</button>
-		<button onclick="updatePieChart(getTotalCauseValues(2004))">2004</button>
-		<button onclick="updatePieChart(getTotalCauseValues(2005))">2005</button>
-		<button onclick="updatePieChart(getTotalCauseValues(2006))">2006</button>
-		<button onclick="updatePieChart(getTotalCauseValues(2007))">2007</button>
-		<button onclick="updatePieChart(getTotalCauseValues(2008))">2008</button>
-		<button onclick="updatePieChart(getTotalCauseValues(2009))">2009</button>
-		<button onclick="updatePieChart(getTotalCauseValues(2010))">2010</button>
-		<button onclick="updatePieChart(getTotalCauseValues(2011))">2011</button>
-		<button onclick="updatePieChart(getTotalCauseValues(2012))">2012</button>
-		<button onclick="updatePieChart(getTotalCauseValues(2013))">2013</button>
-		<button onclick="updatePieChart(getTotalCauseValues(2014))">2014</button>
-		<button onclick="updatePieChart(getTotalCauseValues(2015))">2015</button>
-		<button onclick="updatePieChart(getTotalCauseValues(2016))">2016</button>
-		<div id="my_dataviz">
-			<div id="mapLegend">
-				<ul>
-					<li>
-						<svg width="15" height="15">
-							<rect width="15" height="15" style="fill:#e6194B;stroke-width:3;stroke:rgb(0,0,0)" />
-						</svg>  Heart disease
-					</li>
-					<li>
-						<svg width="15" height="15">
-							<rect width="15" height="15" style="fill:#ffe119;stroke-width:3;stroke:rgb(0,0,0)" />
-						</svg>  Influenza and pneumonia
-					</li>
-					<li>
-						<svg width="15" height="15">
-							<rect width="15" height="15" style="fill:#800000;stroke-width:3;stroke:rgb(0,0,0)" />
-						</svg>  Kidney disease
-					</li>
-					<li>
-						<svg width="15" height="15">
-							<rect width="15" height="15" style="fill:#bfef45;stroke-width:3;stroke:rgb(0,0,0)" />
-						</svg>  Stroke
-					</li>
-					<li>
-						<svg width="15" height="15">
-							<rect width="15" height="15" style="fill:#3cb44b;stroke-width:3;stroke:rgb(0,0,0)" />
-						</svg>  Suicide
-					</li>
-					<li>
-						<svg width="15" height="15">
-							<rect width="15" height="15" style="fill:#f58231;stroke-width:3;stroke:rgb(0,0,0)" />
-						</svg>  Unintentional injuries
-					</li>
-					<li>
-						<svg width="15" height="15">
-							<rect width="15" height="15" style="fill:#808000;stroke-width:3;stroke:rgb(0,0,0)" />
-						</svg>  Alzheimer's disease
-					</li>
-					<li>
-						<svg width="15" height="15">
-							<rect width="15" height="15" style="fill:#f032e6;stroke-width:3;stroke:rgb(0,0,0)" />
-						</svg>  Respiratory Diseases
-					</li>
-					<li>
-						<svg width="15" height="15">
-							<rect width="15" height="15" style="fill:#42d4f4;stroke-width:3;stroke:rgb(0,0,0)" />
-						</svg>  Cancer
-					</li>
-					<li>
-						<svg width="15" height="15">
-							<rect width="15" height="15" style="fill:#000075;stroke-width:3;stroke:rgb(0,0,0)" />
-						</svg>  Diabetes
-					</li>
-				</ul>
-			</div>
+		<div class="row">
+				
+				
+				<!--<div class="col" id="my_dataviz"></div>	-->
+				
 		</div>
-		<div id="stateInfo">
-
+		</div>
 		</div>
   </body>
   <script type="text/javascript" src="myJScode.js"></script>
